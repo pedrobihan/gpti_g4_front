@@ -1,3 +1,10 @@
+
+.pie-chart{
+  height: auto;
+  width: auto;
+  align-items: center;
+}
+
 .App {
   text-align: center;
 }
