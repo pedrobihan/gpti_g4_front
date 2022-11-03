@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+// import { useEffect, useState } from 'react';
+// import axios from 'axios';
 import '../App.css';
 import { PieChart } from 'react-minimal-pie-chart';
 
