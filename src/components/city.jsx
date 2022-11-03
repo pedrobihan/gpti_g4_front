@@ -10,7 +10,7 @@ function ShowCities() {
     // const [loading, setLoading] = useState(true);
 
     // useEffect(() => {
-    //     axios('linkapi/success')
+    //     axios('linkapi/city')
     //         .then(response => {
     //             setData(response.data);
     //         })
