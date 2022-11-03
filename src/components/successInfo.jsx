@@ -41,16 +41,16 @@ function SuccessInfo() {
     return (
         <div>
             <div>
-              <h3> Success request Chart</h3>
+              <h3> Gráfico de estado consultas</h3>
               <div className='pie-chart'>
                 <PieChart
                   data={[
-                    { title: 'Success Consults', value: 25, color: '#008000' },
-                    { title: 'Failed Consults', value: 15, color: '#C13C37' }
+                    { title: 'Consultas Exitosas', value: 25, color: '#008000' },
+                    { title: 'Consultas Fallidas', value: 15, color: '#C13C37' }
                   ]}
                 />
               </div>
-              <h5> Success Consults: 25 - Failed Consults: 15</h5>
+              <h5> Consultas Exitosas: 25 - Consultas Fallidas: 15</h5>
             </div>
         </div>
       );
