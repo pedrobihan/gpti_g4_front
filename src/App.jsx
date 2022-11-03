@@ -1,6 +1,7 @@
 import './App.css';
 import SuccessInfo from './components/successInfo';
 import ShowCities from './components/city';
+import UserQuerys from './components/userQuerys';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       
         <SuccessInfo />
         <ShowCities />
+        <UserQuerys />
       </header>
     </div>
   );
