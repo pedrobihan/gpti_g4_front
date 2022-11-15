@@ -7,11 +7,18 @@ function SuccessInfo() {
     const [data, setData] = useState([{}]);
     const [error, setError] = useState('');
 
+    // setData({success : {true: 0, false: 0}});
+
     useEffect(() => {
-        axios.get('https://gpti-stats-app.herokuapp.com/success')
+        axios.get('/success')
             .then(response => {
                 setData(response.data);
-                console.log(response.data)
+                // console.log(response.data)
+                console.log(data);
+                // if (!data.success.false) {
+                //   data.success.false = 0;
+                // }
+                // console.log(data)
             })
             .catch(error => {
                 console.error("Error fetching data: ", error);
@@ -20,16 +27,9 @@ function SuccessInfo() {
             
     }, [])
 
-  //   useEffect(() => {
-  //     fetch("/success")
-  //     .then( res => res.json()
-  //     .then(
-  //       data => {
-  //         setData(data)
-  //         console.log(data)
-  //       }
-  //     ))
-  // }, [])
+
+
+    console.log("data:", data);
 
     return (
         <div>
@@ -38,12 +38,12 @@ function SuccessInfo() {
               <div className='pie-chart'>
                 <PieChart
                   data={[
-                    { title: 'Consultas Exitosas', value: 25, color: '#008000' },
-                    { title: 'Consultas Fallidas', value: 15, color: '#C13C37' }
+                    { title: 'Consultas Exitosas', value: 2, color: '#008000' },
+                    { title: 'Consultas Fallidas', value: 1, color: '#C13C37' }
                   ]}
                 />
               </div>
-              <h5> Consultas Exitosas: 25 - Consultas Fallidas: 15</h5>
+              <h5> Consultas Exitosas: 1 - Consultas Fallidas: 0</h5>
             </div>
         </div>
       );
