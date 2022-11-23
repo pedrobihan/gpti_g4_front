@@ -3,7 +3,6 @@ import SuccessInfo from './components/successInfo';
 import ShowCities from './components/city';
 import Querys from './components/querys';
 
-
 function App() {
   return (
     <div className="App">
