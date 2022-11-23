@@ -11,7 +11,7 @@ function SuccessInfo() {
     // setData({success : {true: 0, false: 0}});
 
     useEffect(() => {
-        axios.get('/success')
+        axios.get('https://gpti-stats-app.herokuapp.com/success')
             .then(response => {
                 setData(response.data);
                 // console.log("response data DESPUES:", response.data)

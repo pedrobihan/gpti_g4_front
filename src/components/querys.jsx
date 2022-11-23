@@ -10,7 +10,7 @@ function Querys() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('/querys')
+        axios.get('https://gpti-stats-app.herokuapp.com/querys')
             .then(response => {
                 setData(response.data);
                 // console.log("Data city:", response.data)
