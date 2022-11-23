@@ -10,7 +10,7 @@ function Querys() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios('/querys')
+        axios.get('/querys')
             .then(response => {
                 setData(response.data);
                 // console.log("Data city:", response.data)
