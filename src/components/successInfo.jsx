@@ -40,7 +40,8 @@ function SuccessInfo() {
     if (data && data.success) {
       successfull_querys = data.success.true;
       unsuccessfull_querys = data.success.false;
-    }
+    };
+    console.log(error);
     return (
         <div>
             <div>

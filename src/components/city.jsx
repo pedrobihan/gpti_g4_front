@@ -29,7 +29,8 @@ function ShowCities() {
         <div>
             <h1> Loading...</h1>
         </div>
-    )
+    );
+    console.log(error);
 
     return (
         <div className="providerProductsTable__container">
