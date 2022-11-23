@@ -4,8 +4,9 @@ import '../App.css';
 import { PieChart } from 'react-minimal-pie-chart';
 
 function SuccessInfo() {
-    const [data, setData] = useState([{}]);
+    const [data, setData] = useState({});
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
 
     // setData({success : {true: 0, false: 0}});
 
@@ -13,8 +14,8 @@ function SuccessInfo() {
         axios.get('/success')
             .then(response => {
                 setData(response.data);
-                // console.log(response.data)
-                console.log(data);
+                // console.log("response data DESPUES:", response.data)
+                // console.log("data:", data);
                 // if (!data.success.false) {
                 //   data.success.false = 0;
                 // }
@@ -24,13 +25,22 @@ function SuccessInfo() {
                 console.error("Error fetching data: ", error);
                 setError(error);
             })
+            .finally( () => {
+              setLoading(false)
+          })
             
     }, [])
-
-
-
-    console.log("data:", data);
-
+    if (loading) return (
+        <div>
+            <h1> Loading...</h1>
+        </div>
+    )
+    let successfull_querys = 0;
+    let unsuccessfull_querys = 0;
+    if (data && data.success) {
+      successfull_querys = data.success.true;
+      unsuccessfull_querys = data.success.false;
+    }
     return (
         <div>
             <div>
@@ -38,12 +48,12 @@ function SuccessInfo() {
               <div className='pie-chart'>
                 <PieChart
                   data={[
-                    { title: 'Consultas Exitosas', value: 2, color: '#008000' },
-                    { title: 'Consultas Fallidas', value: 1, color: '#C13C37' }
+                    { title: 'Consultas Exitosas', value: successfull_querys, color: '#008000' },
+                    { title: 'Consultas Fallidas', value: unsuccessfull_querys, color: '#C13C37' }
                   ]}
                 />
               </div>
-              <h5> Consultas Exitosas: 1 - Consultas Fallidas: 0</h5>
+              <h5> Consultas Exitosas: {successfull_querys} - Consultas Fallidas: {unsuccessfull_querys}</h5>
             </div>
         </div>
       );
