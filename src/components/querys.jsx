@@ -82,7 +82,7 @@ function Querys() {
     return (
         <div className="providerProductsTable__container">
             <Container className="d-flex flex-column gap-3 mt-4">
-                <h3> Top 3 nombres más frecuentes</h3>
+                <h3> Top 3 nombres de llamados más frecuentes</h3>
                 <Table >
                     <thead>
                         <tr>

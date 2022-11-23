@@ -10,7 +10,11 @@ function ShowCities() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('https://gpti-stats-app.herokuapp.com/city')
+        axios.get('https://gpti-stats-app.herokuapp.com/city',
+            {
+                headers: {withCredentials: false}
+            }
+        )
             .then(response => {
                 setData(response.data);
                 // console.log(response.data)
