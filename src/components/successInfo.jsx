@@ -9,6 +9,8 @@ function SuccessInfo() {
     const [loading, setLoading] = useState(true);
 
     // setData({success : {true: 0, false: 0}});
+    let successfull_querys = 0;
+    let unsuccessfull_querys = 0;
 
     useEffect(() => {
         axios.get('https://gpti-stats-app.herokuapp.com/success')
@@ -19,7 +21,8 @@ function SuccessInfo() {
                 // if (!data.success.false) {
                 //   data.success.false = 0;
                 // }
-                // console.log(data)
+                console.log("success: ", response.data);
+                
             })
             .catch(error => {
                 console.error("Error fetching data: ", error);
@@ -35,8 +38,8 @@ function SuccessInfo() {
             <h1> Loading...</h1>
         </div>
     )
-    let successfull_querys = 0;
-    let unsuccessfull_querys = 0;
+    // let successfull_querys = 0;
+    // let unsuccessfull_querys = 0;
     if (data && data.success) {
       successfull_querys = data.success.true;
       unsuccessfull_querys = data.success.false;
