@@ -60,8 +60,8 @@ function SuccessInfo() {
       successfull_querys = data.success.true;
       unsuccessfull_querys = data.success.false;
     };
-    let porcentaje_exito = 100*successfull_querys/(successfull_querys+unsuccessfull_querys);
-    let porcentaje_fracaso = 100*unsuccessfull_querys/(successfull_querys+unsuccessfull_querys)
+    let porcentaje_exito = Math.round(100*successfull_querys/(successfull_querys+unsuccessfull_querys));
+    let porcentaje_fracaso = Math.round(100*unsuccessfull_querys/(successfull_querys+unsuccessfull_querys));
     return (
         <div>
             <div>
