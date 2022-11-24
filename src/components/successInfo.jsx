@@ -59,7 +59,9 @@ function SuccessInfo() {
     if (data && data.success) {
       successfull_querys = data.success.true;
       unsuccessfull_querys = data.success.false;
-    }
+    };
+    let porcentaje_exito = 100*successfull_querys/(successfull_querys+unsuccessfull_querys);
+    let porcentaje_fracaso = 100*unsuccessfull_querys/(successfull_querys+unsuccessfull_querys)
     return (
         <div>
             <div>
@@ -73,6 +75,8 @@ function SuccessInfo() {
                 />
               </div>
               <h5> Consultas Exitosas: {successfull_querys} - Consultas Fallidas: {unsuccessfull_querys}</h5>
+              <h5> Porcentaje exito: {porcentaje_exito} % - Porcentaje fracaso: {porcentaje_fracaso} %</h5>
+              
             </div>
         </div>
       );
