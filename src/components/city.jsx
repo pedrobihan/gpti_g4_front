@@ -40,22 +40,29 @@ function ShowCities() {
     )
 
     if (data){
+        let dataSorted = Object.entries(data.citys).sort(([,a],[,b]) => b-a)
+        let mapDataSorted = {
+            citys: {}
+        }
+        dataSorted.forEach((char) => {
+            console.log(char[0], char[1])
+            mapDataSorted.citys[`${char[0]}`] = char[1]
+        })
+
         graphic = {
             data: [
             {
                 // Change type to "doughnut", "line", "splineArea", etc.
                 type: "column",
                 // label as data.citys key and y as data.citys value
-                dataPoints: Object.entries(data.citys).map(([key, value]) =>
+                dataPoints: Object.entries(mapDataSorted.citys).map(([key, value]) =>
                     ({ label: key, y: value })
                 )
             }
             ]
         }
     }
-
-    console.log("DATA CITY:", data)
-
+    
     return (
         
         <div className="providerProductsTable__container">
