@@ -13,7 +13,7 @@ function SuccessInfo() {
     let unsuccessfull_querys = 0;
 
     useEffect(() => {
-        axios.get('/success'
+        axios.get('https://gpti-stats-app.herokuapp.com/success'
       )
             .then(response => {
                 setData(response.data);
