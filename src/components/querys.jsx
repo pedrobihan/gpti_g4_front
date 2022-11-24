@@ -133,7 +133,7 @@ function Querys() {
                     </tbody>
                 </Table> */}
                 <CanvasJSChart options = {graphic_names}/>
-                <h3> Top 3 tipos más frecuentes</h3>
+                <h3> Top 3 tiempos más frecuentes</h3>
                 {/* <Table >
                     <thead>
                         <tr>
