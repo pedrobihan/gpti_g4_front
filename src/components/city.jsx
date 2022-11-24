@@ -35,6 +35,8 @@ function ShowCities() {
         </div>
     )
 
+    console.log("DATA CITY:", data)
+
     return (
         <div className="providerProductsTable__container">
             <Container className="d-flex flex-column gap-3 mt-4">

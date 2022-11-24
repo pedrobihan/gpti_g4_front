@@ -37,7 +37,7 @@ function SuccessInfo() {
                 // if (!data.success.false) {
                 //   data.success.false = 0;
                 // }
-                console.log("success: ", response.data);
+                console.log("DATA SUCCESS:", response.data);
                 
             })
             .catch(error => {

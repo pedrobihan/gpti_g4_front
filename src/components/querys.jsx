@@ -40,20 +40,23 @@ function Querys() {
     let common_types_dict = {};
 
     if (data && data.querys) {
-        console.log(data)
+        console.log("DATA QUERYS:", data)
         // top 3 names most common 'name' inside querys[i] and top 3 most common 'type' of querys
         for (let i = 0; i < data.querys.length; i++) {
-            if (common_names[data.querys[i].name]) {
-                common_names[data.querys[i].name] += 1;
-            }
-            else {
-                common_names[data.querys[i].name] = 1;
-            }
-            if (common_types[data.querys[i].type]) {
-                common_types[data.querys[i].type] += 1;
-            }
-            else {
-                common_types[data.querys[i].type] = 1;
+            // only if success is true
+            if (data.querys[i].success) {
+                if (common_names[data.querys[i].name]) {
+                    common_names[data.querys[i].name] += 1;
+                }
+                else {
+                    common_names[data.querys[i].name] = 1;
+                }
+                if (common_types[data.querys[i].type]) {
+                    common_types[data.querys[i].type] += 1;
+                }
+                else {
+                    common_types[data.querys[i].type] = 1;
+                }
             }
         }
         // get the 3 most common names in object with name and count
