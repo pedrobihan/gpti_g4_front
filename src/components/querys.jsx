@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../App.css';
 import { Table, Container } from 'react-bootstrap';
 import '../styles/Table.css';
+import CanvasJSReact from '../canvasjs-3.7.2/canvasjs.react';
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function Querys() {
     const [data, setData] = useState({});
@@ -38,6 +40,8 @@ function Querys() {
     let common_types = {};
     let common_names_dict = {};
     let common_types_dict = {};
+    let graphic_names;
+    let graphic_types;
 
     if (data && data.querys) {
         console.log("DATA QUERYS:", data)
@@ -80,13 +84,39 @@ function Querys() {
         for (let i = 0; i < common_types_array.length; i++) {
             common_types_dict[common_types_array[i].type] = common_types_array[i].count;
         }
+
+        graphic_names = {
+            data: [
+            {
+                // Change type to "doughnut", "line", "splineArea", etc.
+                type: "column",
+                // label as data.citys key and y as data.citys value
+                dataPoints: Object.entries(common_names_dict).map(([key, value]) =>
+                    ({ label: key, y: value })
+                )
+            }
+            ]
+        }
+
+        graphic_types = {
+            data: [
+            {
+                // Change type to "doughnut", "line", "splineArea", etc.
+                type: "column",
+                // label as data.citys key and y as data.citys value
+                dataPoints: Object.entries(common_types_dict).map(([key, value]) =>
+                    ({ label: key, y: value })
+                )
+            }
+            ]
+        }
     }
 
     return (
         <div className="providerProductsTable__container">
             <Container className="d-flex flex-column gap-3 mt-4">
                 <h3> Top 3 nombres de llamados más frecuentes</h3>
-                <Table >
+                {/* <Table >
                     <thead>
                         <tr>
                             <th >Nombre</th>
@@ -101,9 +131,10 @@ function Querys() {
                             </tr>
                         ))}
                     </tbody>
-                </Table>
+                </Table> */}
+                <CanvasJSChart options = {graphic_names}/>
                 <h3> Top 3 tipos más frecuentes</h3>
-                <Table >
+                {/* <Table >
                     <thead>
                         <tr>
                             <th >Tipo</th>
@@ -118,7 +149,8 @@ function Querys() {
                             </tr>
                         ))}
                     </tbody>
-                </Table>
+                </Table> */}
+                <CanvasJSChart options = {graphic_types}/>
             </Container>
         </div>
     );
