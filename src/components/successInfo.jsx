@@ -13,8 +13,23 @@ function SuccessInfo() {
     let unsuccessfull_querys = 0;
 
     useEffect(() => {
-        axios.get('https://gpti-stats-app.herokuapp.com/success'
+        axios.get('https://gpti-stats-app.herokuapp.com/success/',
+        {
+          headers: {
+            'X-Access-Control-Allow-Origin': '*',
+            withCredentials: false,
+          }
+        }
       )
+      // axios({
+      //   method: 'get',
+      //   url: `https://gpti-stats-app.herokuapp.com/success/`,
+      //   withCredentials: false,
+      //   headers: {
+      //     'Content-Type' : 'text/plain',
+      //     'Access-Control-Allow-Origin': '*',
+      //   }
+      // })
             .then(response => {
                 setData(response.data);
                 // console.log("response data DESPUES:", response.data)
