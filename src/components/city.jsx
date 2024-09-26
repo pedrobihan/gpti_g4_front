@@ -1,58 +1,74 @@
-// import { useEffect, useState } from 'react';
-// import axios from 'axios';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../App.css';
 import { Table, Container } from 'react-bootstrap';
 import '../styles/Table.css';
+import CanvasJSReact from '../canvasjs-3.7.2/canvasjs.react';
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function ShowCities() {
-    // const [data, setData] = useState({});
-    // const [error, setError] = useState('');
-    // const [loading, setLoading] = useState(true);
+    const [data, setData] = useState({});
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
 
-    // useEffect(() => {
-    //     axios('linkapi/city')
-    //         .then(response => {
-    //             setData(response.data);
-    //         })
-    //         .catch(error => {
-    //             console.error("Error fetching data: ", error);
-    //             setError(error);
-    //         })
-    //         .finally( () => {
-    //             setLoading(false)
-    //         })
-    // }, [])
+    let graphic;
 
-    // if (error) {
-    //     console.log(error)
-    // }
+    useEffect(() => {
+        axios.get('https://gpti-stats-app.herokuapp.com/city',
+            {
+                headers: {withCredentials: false}
+            }
+        )
+            .then(response => {
+                setData(response.data);
+                // console.log(response.data)
+            })
+            .catch(error => {
+                console.error("Error fetching data: ", error);
+                setError(error);
+            })
+            .finally( () => {
+                setLoading(false)
+            })
+            
+    }, [])
 
-    // if (loading) return (
-    //     <div>
-    //         <h1> Loading...</h1>
-    //     </div>
-    // )
+    if (loading) return (
+        <div>
+            <h1> Loading...</h1>
+        </div>
+    )
 
-    // if (data) return (
-    //     <div>
-    //         <p>{data}</p>
-    //     </div>
-    // );
+    if (data){
+        let dataSorted = Object.entries(data.citys).sort(([,a],[,b]) => b-a)
+        let mapDataSorted = {
+            citys: {}
+        }
+        dataSorted.forEach((char) => {
+            console.log(char[0], char[1])
+            mapDataSorted.citys[`${char[0]}`] = char[1]
+        })
 
-    const cityJson = {
-        'citys': {
-            "Santiago": 6,
-            "Quillota": 1,
-            "Valparaiso": 7,
-            "Concepción": 2
+        graphic = {
+            data: [
+            {
+                // Change type to "doughnut", "line", "splineArea", etc.
+                type: "column",
+                // label as data.citys key and y as data.citys value
+                dataPoints: Object.entries(mapDataSorted.citys).map(([key, value]) =>
+                    ({ label: key, y: value })
+                )
+            }
+            ]
         }
     }
-
+    
     return (
+        
         <div className="providerProductsTable__container">
             <Container className="d-flex flex-column gap-3 mt-4">
                 <h3> Consulta de radiación UV por ciudad</h3>
-                <Table >
+                {/* <Table >
                     <thead>
                         <tr>
                             <th >Ciudad</th>
@@ -60,14 +76,15 @@ function ShowCities() {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.entries(cityJson.citys).map(([key, value]) => (
+                        {Object.entries(data.citys).map(([key, value]) => (
                             <tr key={key}>
                                 <td >{key}</td>
                                 <td >{value}</td>
                             </tr>
                         ))}
                     </tbody>
-                </Table>
+                </Table> */}
+                <CanvasJSChart options = {graphic}/>
             </Container>
         </div>
     );
